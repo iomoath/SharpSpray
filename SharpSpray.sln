@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpSpray", "SharpSpray\SharpSpray.csproj", "{29CFAA16-9277-4EFB-9E91-A7D11225160B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29CFAA16-9277-4EFB-9E91-A7D11225160B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29CFAA16-9277-4EFB-9E91-A7D11225160B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29CFAA16-9277-4EFB-9E91-A7D11225160B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29CFAA16-9277-4EFB-9E91-A7D11225160B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BC0DF9B-B06D-44D8-B69E-9D0B80B099FF}
+	EndGlobalSection
+EndGlobal
