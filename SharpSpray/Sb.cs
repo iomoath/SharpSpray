@@ -334,12 +334,12 @@ namespace A
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if(string.IsNullOrEmpty(_options.Domain))
-                    Messenger.RedMessage("[-] Could not connect to the domain. Try specifying the domain name with the -d option.");
+                    Messenger.RedMessage($"[-] Could not connect to the domain. Try specifying the domain name with the -d option. {e.Message}");
                 else
-                    Messenger.RedMessage($"[-] Could not connect to the domain {_options.Domain}");
+                    Messenger.RedMessage($"[-] Could not connect to the domain {_options.Domain}. {e.Message}");
 
                 return false;
             }
