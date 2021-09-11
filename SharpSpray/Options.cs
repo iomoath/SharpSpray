@@ -51,11 +51,11 @@ namespace A
         public int DelayBetweenEachSprayAttempt { get; set; }
 
 
-        [Option('s', Required = false, HelpText = "Delay in seconds between each authentication attempt.")]
+        [Option('s', Required = false, HelpText = "(Optional) Delay in seconds between each authentication attempt.")]
         public int DelayBetweenEachAuthAttempt { get; set; }
 
 
-        [Option('j', Required = false)]
+        [Option('j', Required = false, HelpText = "(Optional) Jitter in seconds.")]
         public int Jitter { get; set; }
 
         [Option("Force", Required = false, HelpText = "Force start without asking for confirmation.")]
@@ -64,7 +64,7 @@ namespace A
         [Option("get-users-list", Required = false, HelpText = "Get the domain users list from the active directory.")]
         public bool GetUsersList { get; set; }
 
-        [Option("show-examples", Required = false, HelpText = "Get domain users list from the active directory.")]
+        [Option("show-examples", Required = false, HelpText = "Show usage examples.")]
         public bool ShowUsageExamples { get; set; }
 
 
