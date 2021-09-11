@@ -29,29 +29,23 @@ SharpSpray is a C# port of [DomainPasswordSpray](https://github.com/dafthack/Dom
 ```
 > SharpSpray.exe --help
 
-  -v, --Verbose       (Default: false) Show verbose messages.
+  -v, --Verbose       Show verbose messages.
   -u                  (Optional) Username list file path. This will be
-                      automatically fetched from the active directory if not
-                      specified.
-  -p                  A single password that will be used to perform the
-                      password spray.
+                      automatically fetched from the active directory if not specified.
+  -p                  A single password that will be used to perform the password spray.
   -k, --pl            (Optional) Password List file path.
-  -d                  (Group: OutsideDomain) (Optional) Specify a domain name.
-  -m                  (Group: OutsideDomain) (Default: false) Use this option if
-                      spraying from a host located outside the Domain context.
-  -q, --dc-ip         (Group: OutsideDomain) Required when the option 'm'
-                      OutsideDomain is checked
-  -x                  (Default: false) Attempts to exclude disabled accounts
+  -d                  (Optional) Specify a domain name.
+  -m                  Use this option if spraying from a host located outside the Domain context.
+  -q, --dc-ip         Required when the option 'm' OutsideDomain is checked
+  -x                  Attempts to exclude disabled accounts
                       from the user list (Not supported with the option -m)
-  -z                  (Default: false) Exclude accounts within 1 attempt of
+  -z                  Exclude accounts within 1 attempt of
                       locking out (Not supported with the option -m)
   -f                  Custom LDAP filter for users, e.g. "(description=*admin*)"
   -o                  A file to output the results to.
-  -w                  (Group: OutsideDomain) (Default: 32) Do not relay on
-                      domain lockout observation window settings and use this
-                      specific value. (Default 32 minute)
-  -s                  Delay in seconds between each authentication attempt.
-  -j
+  -w                  Do not relay on domain lockout observation window settings and use this specific value. (Default 32 minute)
+  -s                  (Optional) Delay in seconds between each authentication attempt.
+  -j                  (Optional) Jitter in seconds.
   --Force             Force start without asking for confirmation.
   --get-users-list    Get the domain users list from the active directory.
   --show-examples     Get domain users list from the active directory.
